@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1  http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd"
+                identifier="cap_theorem_association" title="CAP Theorem Matching" adaptive="false" timeDependent="false">
+    <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="pair">
+        <correctResponse>
+            <value>A Consistency</value>
+            <value>B Availability</value>
+            <value>C PartitionTolerance</value>
+        </correctResponse>
+        <mapping defaultValue="0">
+            <mapEntry mapKey="A Consistency" mappedValue="1"/>
+            <mapEntry mapKey="B Availability" mappedValue="1"/>
+            <mapEntry mapKey="C PartitionTolerance" mappedValue="1"/>
+        </mapping>
+    </responseDeclaration>
+    <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+    <itemBody>
+        <associateInteraction responseIdentifier="RESPONSE" shuffle="true" maxAssociations="3">
+            <prompt>Match the key concepts of the CAP theorem with their definitions. Note that one definition is unmatched, and one concept can be used multiple times.</prompt>
+            <simpleAssociableChoice identifier="A" matchMax="1">Consistency</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="B" matchMax="1">Availability</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="C" matchMax="1">Partition Tolerance</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="Consistency" matchMax="2">Ensures all nodes see the same data at the same time</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="Availability" matchMax="2">Ensures that every request receives a response, even in case of partial failure</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="PartitionTolerance" matchMax="1">Ensures the system continues to operate despite network partitions</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="Scalability" matchMax="1">Ability to handle increased load by adding resources</simpleAssociableChoice>
+        </associateInteraction>
+    </itemBody>
+    <responseProcessing template="http://www.imsglobal.org/question/qti_v2p1/rptemplates/map_response"/>
+</assessmentItem>

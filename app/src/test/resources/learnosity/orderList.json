@@ -1,0 +1,18 @@
+{
+  "type": "orderlist",
+  "is_math": false,
+  "stimulus": "The following F1 drivers finished on the podium in the first ever Grand Prix of\n                Bahrain. Can you rearrange them into the correct finishing order?",
+  "list": ["Rubens Barrichello", "Jenson Button", "Michael Schumacher"],
+  "feedback_attempts": "0",
+  "instant_feedback": false,
+  "validation": {
+    "allow_negative_scores:": false,
+    "min_score_if_attempted": "0",
+    "scoring_type": "exactMatch",
+    "automarkable": true,
+    "valid_response": {
+      "value": [2, 0, 1]
+    },
+    "penalty": 0
+  }
+}

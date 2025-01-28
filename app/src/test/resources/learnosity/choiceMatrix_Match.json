@@ -1,0 +1,24 @@
+{
+    "options": ["A Midsummer-Night's Dream", "Romeo and Juliet", "The Tempest"],
+    "stems": ["Capulet", "Demetrius", "Lysander", "Prospero"],
+    "stimulus": "Match the following characters to the Shakespeare play they appeared in:",
+    "type": "choicematrix",
+    "validation": {
+        "scoring_type": "exactMatch",
+        "valid_response": {
+            "score": 1,
+            "value": [
+                1,
+                0,
+                0,
+                2
+            ]
+        }
+    },
+    "ui_style": {
+        "type": "table",
+        "stem_title": "Characters and Plays",
+        "horizontal_lines": false
+    },
+    "shuffle_options": true
+}

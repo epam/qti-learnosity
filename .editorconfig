@@ -1,0 +1,13 @@
+[*]
+charset = utf-8
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 120
+ij_continuation_indent_size = 8
+
+[*.java]
+indent_size = 4
+tab_width = 4
+ij_java_class_count_to_use_import_on_demand = 100
+ij_java_names_count_to_use_import_on_demand = 100

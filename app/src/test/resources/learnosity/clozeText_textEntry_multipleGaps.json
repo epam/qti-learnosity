@@ -1,0 +1,47 @@
+{
+  "template": "\u003cdiv xmlns\u003d\"http://www.imsglobal.org/xsd/imsqti_v2p1\" xmlns:xsi\u003d\"http://www.w3.org/2001/XMLSchema-instance\"\u003eLevel 1 CH1 Géoculture\n            \u003cbr/\u003e\u003cstrong\u003eA\u003c/strong\u003eMatch each letter in the map of the Paris region with the name of the place it represents.\n            (10 points)\n            \u003cbr/\u003e\u003cimg src\u003d\"L1_CH01101.gif\" alt\u003d\"\"/\u003e\u003cbr/\u003e\n            le jardin de Giverny\n            \u003cbr/\u003e{{response}}\n        \u003c/div\u003e\u003cp\u003e{{response}}\n        \u003c/p\u003e",
+  "type": "clozetext",
+  "is_math": false,
+  "feedback_attempts": 0,
+  "instant_feedback": false,
+  "validation": {
+    "allow_negative_scores": false,
+    "penalty": 0,
+    "min_score_if_attempted": 0,
+    "scoring_type": "exactMatch",
+    "unscored": false,
+    "valid_response": {
+      "score": "6.0",
+      "value": [
+        "b",
+        "d"
+      ]
+    },
+    "automarkable": true,
+    "alt_responses": [
+      {
+        "score": "4.0",
+        "value": [
+          "a",
+          "c"
+        ]
+      },
+      {
+        "score": "5.0",
+        "value": [
+          "a",
+          "d"
+        ]
+      },
+      {
+        "score": "5.0",
+        "value": [
+          "b",
+          "c"
+        ]
+      }
+    ]
+  },
+  "shuffle_options": false,
+  "case_sensitive": true
+}

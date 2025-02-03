@@ -29,7 +29,7 @@ We welcome contributions of all sizes, from minor typo fixes to significant new 
     ```
 
     **\<prefix\>** should indicate the overall intent of the code (a given issue) in the branch.
-    - Possible prefix values: chore, feature, fix, refactor, docs
+    - Possible prefix values: chore, feat, fix, refactor, docs
     - A prefix must always start with a lowercase letter
 
     **\<branch name>** should concisely describe the code (a given issue) in the branch.

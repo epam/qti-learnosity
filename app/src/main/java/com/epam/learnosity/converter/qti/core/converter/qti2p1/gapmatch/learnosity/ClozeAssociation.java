@@ -16,39 +16,33 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package com.epam.learnosity.converter.qti.core.converter.qti2p1.match.qti;
+package com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.learnosity;
 
-import com.epam.learnosity.converter.qti.core.converter.qti2p1.QtiType;
-import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.Interaction;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.learnosity.AbstractQuestionType;
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
 /**
- * QTI MatchInteraction element which requires an association to be made between two sets of choices.
+ * Learnosity's Cloze with drag & drop (clozeassociation) element which requires students to drag their responses from
+ * a list of options set by the author, into empty response boxes.
  *
- * @see <a href="https://www.imsglobal.org/question/qtiv2p1/imsqti_infov2p1.html#element10296">MatchInteraction</a>
+ * @see <a href="https://help.learnosity.com/hc/en-us/articles/16685209199901-Cloze-with-drag-drop-clozeassociation">ClozeAssociation</a>
  */
 @Getter
 @Setter
-@XmlRootElement(namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class MatchInteraction extends Interaction {
+public class ClozeAssociation extends AbstractQuestionType<String> {
+    private String template;
 
-    @XmlElement(namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")
-    private List<SimpleMatchSet> simpleMatchSet;
+    @SerializedName("possible_responses")
+    private List<String> possibleResponses;
 
-    @XmlAttribute
-    private int maxAssociations;
+    @SerializedName("duplicate_responses")
+    private boolean duplicateResponses;
 
-    @Override
-    public QtiType getType() {
-        return QtiType.MATCH;
+    public ClozeAssociation() {
+        super("clozeassociation");
     }
 }

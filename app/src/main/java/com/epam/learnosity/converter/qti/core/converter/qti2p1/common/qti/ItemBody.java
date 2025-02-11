@@ -20,6 +20,7 @@ package com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti;
 
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.associate.qti.AssociateInteraction;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.choice.qti.ChoiceInteraction;
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti.GapMatchInteraction;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.match.qti.MatchInteraction;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.order.qti.OrderInteraction;
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -41,6 +42,7 @@ public class ItemBody {
 
     @XmlElements({
             @XmlElement(name = "choiceInteraction", type = ChoiceInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1"),
+            @XmlElement(name = "gapMatchInteraction", type = GapMatchInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1"),
             @XmlElement(name = "matchInteraction", type = MatchInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1"),
             @XmlElement(name = "orderInteraction", type = OrderInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1"),
             @XmlElement(name = "associateInteraction", type = AssociateInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")

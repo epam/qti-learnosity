@@ -17,7 +17,7 @@ We welcome contributions of all sizes, from minor typo fixes to significant new 
 
 #### Development Workflow:
 1. **Fork the Repository**\
-    Click the "Fork" button at the top-right corner of this repository.
+    Click the "Fork" button in the top-right corner of this repository.
 
 2. **Clone Your Fork**\
     Create a local copy of your forked repository on your computer.
@@ -29,7 +29,8 @@ We welcome contributions of all sizes, from minor typo fixes to significant new 
     ```
 
     **\<prefix\>** should indicate the overall intent of the code (a given issue) in the branch.
-    - Possible prefix values: chore, feat, fix, refactor, docs
+    - Possible prefix values are the same as defined in [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+      (chore, feat, fix, refactor, docs, etc.)
     - A prefix must always start with a lowercase letter
 
     **\<branch name>** should concisely describe the code (a given issue) in the branch.

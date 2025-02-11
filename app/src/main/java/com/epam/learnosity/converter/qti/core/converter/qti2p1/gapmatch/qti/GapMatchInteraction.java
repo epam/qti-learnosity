@@ -16,40 +16,40 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package com.epam.learnosity.converter.qti.core.converter.qti2p1.choice.qti;
+package com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti;
 
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.QtiType;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.Interaction;
-import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.SimpleChoice;
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.ItemBodyContentDomHandler;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlAnyElement;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.SequencedCollection;
+import java.util.List;
 
 /**
- * QTI ChoiceInteraction element which requires one item to be selected.
+ * QTI GapMatchInteraction element which requires selecting choices from a set and using them to fill the gaps.
  *
- * @see <a href="https://www.imsglobal.org/question/qtiv2p1/imsqti_infov2p1.html#element10278">ChoiceInteraction</a>
+ * @see <a href="https://www.imsglobal.org/question/qtiv2p1/imsqti_infov2p1.html#element10307">GapMatchInteraction</a>
  */
 @Getter
 @Setter
 @XmlRootElement(namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ChoiceInteraction extends Interaction {
+public class GapMatchInteraction extends Interaction {
 
     @XmlElement(namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")
-    private SequencedCollection<SimpleChoice> simpleChoice;
-
-    @XmlAttribute
-    private int maxChoices;
+    private List<GapText> gapText;
 
     @Override
     public QtiType getType() {
-        return QtiType.CHOICE;
+        return QtiType.GAP_MATCH;
     }
+
+    @XmlAnyElement(value = ItemBodyContentDomHandler.class)
+    private String textBlock;
 }

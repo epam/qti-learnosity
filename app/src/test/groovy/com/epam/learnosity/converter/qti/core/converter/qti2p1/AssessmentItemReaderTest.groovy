@@ -23,6 +23,8 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.choice.qti.Choice
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.MapEntry
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.SimpleAssociableChoice
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.SimpleChoice
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti.GapMatchInteraction
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti.GapText
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.match.qti.MatchInteraction
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.order.qti.OrderInteraction
 import spock.lang.Specification
@@ -404,6 +406,63 @@ class AssessmentItemReaderTest extends Specification {
                         " continues to operate despite network partitions"),
                 new SimpleAssociableChoice("Scalability", 1, "Ability to handle increased" +
                         " load by adding resources")
+        )
+    }
+
+    def readGapMatchTest() {
+        given:
+        def qtiXml = getClass().getResource('/qti/gap_match.xml').text
+        def reader = new AssessmentItemReader()
+
+        when:
+        def result = reader.read(qtiXml)
+
+        then:
+        result.getIdentifier() == "gapMatch"
+        result.getTitle() == "Richard III (Take 1)"
+        !result.isAdaptive()
+        !result.isTimeDependent()
+        result.getResponseProcessing().getTemplate() == "http://www.imsglobal.org/question/qti_v2p1/rptemplates/map_response"
+
+        def outcomeDeclaration = result.getOutcomeDeclaration()
+        outcomeDeclaration.getIdentifier() == "SCORE"
+        outcomeDeclaration.getCardinality() == "single"
+        outcomeDeclaration.getBaseType() == "float"
+
+        def responseDeclaration = result.getResponseDeclaration().getFirst()
+        responseDeclaration.getIdentifier() == "RESPONSE"
+        responseDeclaration.getCardinality() == "multiple"
+        responseDeclaration.getBaseType() == "directedPair"
+
+        def mapping = responseDeclaration.getMapping()
+        mapping.getDefaultValue() == -1
+
+        def mapEntry = mapping.getMapEntry()
+        mapEntry.size() == 2
+        mapEntry.containsAll(
+                new MapEntry("W G1", "1", false),
+                new MapEntry("Su G2", "2", false)
+        )
+
+        def itemBody = result.getItemBody()
+        itemBody.getContent() == null
+
+        GapMatchInteraction interaction = itemBody.getInteraction() as GapMatchInteraction
+        interaction.getType() == QtiType.GAP_MATCH
+        interaction.getResponseIdentifier() == "RESPONSE"
+        interaction.getPrompt() == "Identify the missing words in this famous quote from Shakespeare's Richard III."
+        interaction.getTextBlock() == "<blockquote><p>Now is the <gap identifier=\"G1\"/> of our discontent<br/> Made" +
+                " glorious <gap identifier=\"G2\"/> by this sun of York;<br/> And all the clouds that lour'd\n" +
+                "\t\t\t\t\tupon our house<br/> In the deep bosom of the ocean buried.</p>\n\t\t\t</blockquote>"
+        !interaction.isShuffle()
+
+        def choices = interaction.getGapText()
+        choices.size() == 4
+        choices.containsAll(
+                new GapText("W", 1, "winter"),
+                new GapText("Sp", 1, "spring"),
+                new GapText("Su", 1, "summer"),
+                new GapText("A", 1, "autumn")
         )
     }
 }

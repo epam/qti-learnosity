@@ -16,40 +16,27 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package com.epam.learnosity.converter.qti.core.converter.qti2p1.choice.qti;
+package com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti;
 
-import com.epam.learnosity.converter.qti.core.converter.qti2p1.QtiType;
-import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.Interaction;
-import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.SimpleChoice;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.xml.bind.annotation.XmlValue;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.SequencedCollection;
-
-/**
- * QTI ChoiceInteraction element which requires one item to be selected.
- *
- * @see <a href="https://www.imsglobal.org/question/qtiv2p1/imsqti_infov2p1.html#element10278">ChoiceInteraction</a>
- */
-@Getter
-@Setter
-@XmlRootElement(namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ChoiceInteraction extends Interaction {
-
-    @XmlElement(namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")
-    private SequencedCollection<SimpleChoice> simpleChoice;
+public class GapText {
+    @XmlAttribute
+    private String identifier;
 
     @XmlAttribute
-    private int maxChoices;
+    private Integer matchMax;
 
-    @Override
-    public QtiType getType() {
-        return QtiType.CHOICE;
-    }
+    @XmlValue
+    private String content;
 }

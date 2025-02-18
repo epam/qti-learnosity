@@ -26,8 +26,11 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.choice.qti.Choice
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.QtiToLearnosityAbstractConverter;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.learnosity.Validation;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.AssessmentItem;
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.MapEntry;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SequencedCollection;
 
 @Slf4j
@@ -44,9 +47,9 @@ public class ChoiceConverter extends QtiToLearnosityAbstractConverter<MultipleCh
         ChoiceInteraction interaction = (ChoiceInteraction) assessmentItem.getItemBody().getInteraction();
         multipleChoice.setMultipleResponses(parseMultipleResponses(interaction));
         multipleChoice.setUiStyle(parseUiStyle(assessmentItem));
-
         multipleChoice.setOptions(parseOptions(assessmentItem));
         multipleChoice.setValidation(parseValidation(assessmentItem));
+        multipleChoice.setMaxSelection(interaction.getMaxChoices());
 
         // TODO Implement mapping of these fields or remove it completely to use defaults
         multipleChoice.setStimulusReview(null);
@@ -65,9 +68,27 @@ public class ChoiceConverter extends QtiToLearnosityAbstractConverter<MultipleCh
     }
 
     private Validation parseValidation(AssessmentItem assessmentItem) {
+        if (assessmentItem.getResponseDeclaration().getFirst().getMapping() == null) {
+            log.warn("No response mapping available. Skipping validation...");
+            return null;
+        }
         Validation validation = new Validation();
+        validation.setScoringType(Validation.ScoringType.PARTIAL_MATCH_V2);
         StringValidResponse validResponse = new StringValidResponse();
-        validResponse.setValue(assessmentItem.getResponseDeclaration().getFirst().getCorrectResponse().getValue());
+        SequencedCollection<MapEntry> mapEntries = assessmentItem.getResponseDeclaration().getFirst().getMapping()
+                .getMapEntry();
+        double totalScore = 0;
+        List<String> correctResponseOptions = new ArrayList<>();
+        for (MapEntry entry: mapEntries) {
+            if (Double.parseDouble(entry.getMappedValue()) > 0) {
+                correctResponseOptions.add(entry.getMapKey());
+                totalScore += Double.parseDouble(entry.getMappedValue());
+            } else {
+                log.warn("Unsupported negative score found. Skipping '{}'", entry.getMapKey());
+            }
+        }
+        validResponse.setScore(String.valueOf(totalScore));
+        validResponse.setValue(correctResponseOptions);
         validation.setValidResponse(validResponse);
         return validation;
     }
@@ -84,6 +105,7 @@ public class ChoiceConverter extends QtiToLearnosityAbstractConverter<MultipleCh
     }
 
     private boolean parseMultipleResponses(ChoiceInteraction interaction) {
-        return interaction.getMaxChoices() > 1;
+        // 0 indicates unlimited number of choices
+        return interaction.getMaxChoices() > 1 || interaction.getMaxChoices() == 0;
     }
 }

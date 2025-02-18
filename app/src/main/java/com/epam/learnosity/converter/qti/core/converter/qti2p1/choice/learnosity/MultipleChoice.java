@@ -33,6 +33,12 @@ import lombok.Setter;
 @Getter
 public class MultipleChoice extends AbstractQuestionType<Option> {
 
+    @SerializedName("multiple_responses")
+    private boolean multipleResponses;
+
+    @SerializedName("max_selection")
+    private int maxSelection;
+
     public MultipleChoice() {
         super("mcq");
     }
@@ -50,7 +56,4 @@ public class MultipleChoice extends AbstractQuestionType<Option> {
             throw new IllegalArgumentException("McqUiStyle is expected");
         }
     }
-
-    @SerializedName("multiple_responses")
-    private boolean multipleResponses;
 }

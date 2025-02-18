@@ -79,22 +79,3 @@ tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
-
-val removeEmptyLogs = tasks.register<Delete>("removeEmptyLogs") {
-    val logFilesDir = File(projectDir, ".")
-
-    val emptyLogFiles = logFilesDir.listFiles { file ->
-        file.isFile && file.name.endsWith(".log") && file.length() < 1L
-    } ?: arrayOf<File>()
-
-    setDelete(emptyLogFiles)
-
-    doFirst {
-        if (emptyLogFiles.isNotEmpty()) {
-            println("Deleting empty log files:")
-            emptyLogFiles.forEach { println(" - ${it.absolutePath}") }
-        } else {
-            println("No empty log files found.")
-        }
-    }
-}

@@ -62,7 +62,7 @@ public class App {
                     log.info("Successfully converted '{}' and stored in '{}'", resources.get(i).name(), targetPath);
                     processedFilesCounter++;
                 } catch (Exception e) {
-                    log.warn("Cannot process '{}', reason '{}'", resources.get(i).name(), e.getMessage());
+                    log.warn("Cannot process '{}'", resources.get(i).name(), e);
                 }
             }
         } catch (Exception e) {

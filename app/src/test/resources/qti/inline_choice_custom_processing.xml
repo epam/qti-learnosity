@@ -21,6 +21,17 @@
                 In the deep bosom of the ocean buried.</p>
         </blockquote>
     </itemBody>
-    <responseProcessing
-        template="http://www.imsglobal.org/question/qti_v2p1/rptemplates/match_correct"/>
+    <responseProcessing>
+        <responseCondition>
+            <responseIf>
+                <match>
+                    <variable identifier="RESPONSE"/>
+                    <baseValue baseType="identifier">Y</baseValue>
+                </match>
+                <setOutcomeValue identifier="SCORE">
+                    <baseValue baseType="float">1</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+        </responseCondition>
+    </responseProcessing>
 </assessmentItem>

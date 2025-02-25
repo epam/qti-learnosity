@@ -27,7 +27,7 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.Assess
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.MapEntry;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.ResponseDeclaration;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.textentry.learnosity.ClozeText;
-import com.epam.learnosity.converter.qti.core.converter.util.ResponseUtils;
+import com.epam.learnosity.converter.qti.core.converter.util.ValidationMappingUtils;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 
@@ -60,7 +60,7 @@ public class TextEntryConverter extends QtiToLearnosityAbstractConverter<ClozeTe
         validation.setScoringType(Validation.ScoringType.EXACT_MATCH);
         String content = assessmentItem.getItemBody().getContentAsSingleString();
 
-        List<String> responseIds = ResponseUtils.extractElementIds(content, TEXT_ENTRY_REGEX_PATTERN,
+        List<String> responseIds = ValidationMappingUtils.extractElementIds(content, TEXT_ENTRY_REGEX_PATTERN,
                 RESPONSE_ID_REGEX_PATTERN);
         List<ResponseDeclaration> responseDeclarations = assessmentItem.getResponseDeclaration();
         List<List<MapEntry>> interactionResponses = new ArrayList<>();
@@ -79,7 +79,7 @@ public class TextEntryConverter extends QtiToLearnosityAbstractConverter<ClozeTe
             }
         }
         List<List<MapEntry>> cartesianProduct = Lists.cartesianProduct(interactionResponses);
-        List<StringValidResponse> validResponses = ResponseUtils.mapToStringResponses(cartesianProduct);
+        List<StringValidResponse> validResponses = ValidationMappingUtils.mapToStringResponses(cartesianProduct);
 
         List<StringValidResponse> sortedResponses = validResponses.stream()
                 .sorted(Comparator.comparing(stringValidResponse -> Double.parseDouble(stringValidResponse.getScore())))

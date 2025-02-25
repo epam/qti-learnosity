@@ -45,10 +45,9 @@ class GapMatchConverterTest extends Specification {
         !clozeAssociation.isInstantFeedback()
         !clozeAssociation.isShuffleOptions()
         !clozeAssociation.isDuplicateResponses()
-        clozeAssociation.getTemplate() == "<blockquote><p>Now is the {{response}} of our discontent<br/> Made" +
-                " glorious {{response}} by this sun of York;<br/> And all the clouds that lour'd\n" +
-                "\t\t\t\t\tupon our house<br/> In the deep bosom of the ocean buried.</p>\n" +
-                "\t\t\t</blockquote>"
+        clozeAssociation.getTemplate() == "<blockquote><p>Now is the {{response}} of our discontent<br/> Made " +
+                "glorious {{response}} by this sun of York;<br/> And all the clouds that lour'd\n             " +
+                "       upon our house<br/> In the deep bosom of the ocean buried.</p>\n            </blockquote>"
 
         def possibleResponses = clozeAssociation.getPossibleResponses()
         possibleResponses.size() == 4
@@ -88,10 +87,9 @@ class GapMatchConverterTest extends Specification {
         !clozeAssociation.isInstantFeedback()
         !clozeAssociation.isShuffleOptions()
         clozeAssociation.isDuplicateResponses()
-        clozeAssociation.getTemplate() == "<blockquote><p>Now is the {{response}} of our discontent<br/> Made" +
-                " glorious {{response}} by this sun of York;<br/> And all the clouds that lour'd\n" +
-                "\t\t\t\t\tupon our house<br/> In the deep bosom of the ocean buried.</p>\n" +
-                "\t\t\t</blockquote>"
+        clozeAssociation.getTemplate() == "<blockquote><p>Now is the {{response}} of our discontent<br/> Made " +
+                "glorious {{response}} by this sun of York;<br/> And all the clouds that lour'd\n             " +
+                "       upon our house<br/> In the deep bosom of the ocean buried.</p>\n            </blockquote>"
 
         def possibleResponses = clozeAssociation.getPossibleResponses()
         possibleResponses.size() == 4

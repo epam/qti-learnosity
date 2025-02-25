@@ -16,28 +16,30 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package com.epam.learnosity.converter.qti.core.converter.qti2p1.textentry.qti;
+package com.epam.learnosity.converter.qti.core.converter.qti2p1.inlinechoice.learnosity;
 
-import com.epam.learnosity.converter.qti.core.converter.qti2p1.QtiType;
-import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.Interaction;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlRootElement;
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.learnosity.AbstractQuestionType;
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
- * QTI 2.1 TextEntryInteraction element which requires blanks to be filled in a block of text.
+ * Learnosity's Cloze with dropdown (clozedropdown) element which requires students to select answers to text
+ * prompts from drop down menus.
  *
- * @see <a href="https://www.imsglobal.org/question/qtiv2p1/imsqti_infov2p1.html#element10333">TextEntryInteraction</a>
+ * @see <a href="https://help.learnosity.com/hc/en-us/articles/22740756925469-Cloze-with-drop-down-clozedropdown">ClozeDropdown</a>
  */
 @Getter
 @Setter
-@XmlRootElement(namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class TextEntryInteraction extends Interaction {
-    @Override
-    public QtiType getType() {
-        return QtiType.TEXT_ENTRY;
+public class ClozeDropdown extends AbstractQuestionType<String> {
+    private String template;
+
+    @SerializedName("possible_responses")
+    private List<List<String>> possibleResponses;
+
+    public ClozeDropdown() {
+        super("clozedropdown");
     }
 }

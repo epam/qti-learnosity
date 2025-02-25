@@ -220,13 +220,11 @@ class AssessmentItemReaderTest extends Specification {
         validResponses[1].getMappedValue() == "0.5"
 
         def itemBody = result.getItemBody()
-        itemBody.getContentAsSingleString() == "<p>Identify the missing word in this famous " +
-                "quote from Shakespeare's Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> " +
-                "Made glorious summer by this sun of\n" +
-                "\t\t\t\t\t<textEntryInteraction responseIdentifier=\"RESPONSE\" expectedLength=\"15\"/>;<br/>\n" +
-                "\t\t\t\tAnd all the clouds that lour'd upon our house<br/> In the deep bosom of the ocean\n" +
-                "\t\t\t\tburied.</p>\n" +
-                "\t\t</blockquote>"
+        itemBody.getContentAsSingleString() == "<p>Identify the missing word in this famous quote from Shakespeare's" +
+                " Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious summer by " +
+                "this sun of\n                    <textEntryInteraction responseIdentifier=\"RESPONSE\" " +
+                "expectedLength=\"15\"/>;<br/>\n                And all the clouds that lour'd upon our house<br/>" +
+                " In the deep bosom of the ocean\n                buried.</p>\n        </blockquote>"
     }
 
     def readMultipleTextEntryTest() {
@@ -451,9 +449,10 @@ class AssessmentItemReaderTest extends Specification {
         interaction.getType() == QtiType.GAP_MATCH
         interaction.getResponseIdentifier() == "RESPONSE"
         interaction.getPrompt() == "Identify the missing words in this famous quote from Shakespeare's Richard III."
-        interaction.getTextBlock() == "<blockquote><p>Now is the <gap identifier=\"G1\"/> of our discontent<br/> Made" +
-                " glorious <gap identifier=\"G2\"/> by this sun of York;<br/> And all the clouds that lour'd\n" +
-                "\t\t\t\t\tupon our house<br/> In the deep bosom of the ocean buried.</p>\n\t\t\t</blockquote>"
+        interaction.getTextBlock() == "<blockquote><p>Now is the <gap identifier=\"G1\"/> of our discontent<br/> " +
+                "Made glorious <gap identifier=\"G2\"/> by this sun of York;<br/> And all the clouds that lour'd\n" +
+                "                    upon our house<br/> In the deep bosom of the ocean buried.</p>\n            " +
+                "</blockquote>"
         !interaction.isShuffle()
 
         def choices = interaction.getGapText()
@@ -464,5 +463,46 @@ class AssessmentItemReaderTest extends Specification {
                 new GapText("Su", 1, "summer"),
                 new GapText("A", 1, "autumn")
         )
+    }
+
+    def readInlineChoiceTest() {
+        given:
+        def qtiXml = getClass().getResource('/qti/inline_choice.xml').text
+        def reader = new AssessmentItemReader()
+
+        when:
+        def result = reader.read(qtiXml)
+
+        then:
+        result.getIdentifier() == "inlineChoice"
+        result.getTitle() == "Richard III (Take 2)"
+        !result.isAdaptive()
+        !result.isTimeDependent()
+        result.getResponseProcessing().getTemplate() == "http://www.imsglobal.org/question/qti_v2p1/rptemplates/" +
+                "match_correct"
+
+        def outcomeDeclaration = result.getOutcomeDeclaration()
+        outcomeDeclaration.getIdentifier() == "SCORE"
+        outcomeDeclaration.getCardinality() == "single"
+        outcomeDeclaration.getBaseType() == "float"
+
+        def responseDeclaration = result.getResponseDeclaration().getFirst()
+        responseDeclaration.getIdentifier() == "RESPONSE"
+        responseDeclaration.getCardinality() == "single"
+        responseDeclaration.getBaseType() == "identifier"
+        responseDeclaration.getMapping() == null
+
+        def validResponses = responseDeclaration.getCorrectResponse().getValue()
+        validResponses.size() == 1
+        validResponses[0] == "Y"
+
+        def itemBody = result.getItemBody()
+        itemBody.getContentAsSingleString() == "<p>Identify the missing word in this famous quote from Shakespeare's" +
+                " Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious summer by" +
+                " this sun of\n                    <inlineChoiceInteraction responseIdentifier=\"RESPONSE\" " +
+                "shuffle=\"false\"><inlineChoice identifier=\"G\">Gloucester</inlineChoice><inlineChoice " +
+                "identifier=\"L\">Lancaster</inlineChoice><inlineChoice identifier=\"Y\">York</inlineChoice>\n" +
+                "                </inlineChoiceInteraction>;<br/> And all the clouds that lour'd upon our house" +
+                "<br/>\n                In the deep bosom of the ocean buried.</p>\n        </blockquote>"
     }
 }

@@ -1,4 +1,4 @@
-version = "0.0.1-SNAPSHOT"
+version = "0.1.0"
 
 plugins {
     // Apply the groovy plugin to also add support for Groovy (needed for Spock)

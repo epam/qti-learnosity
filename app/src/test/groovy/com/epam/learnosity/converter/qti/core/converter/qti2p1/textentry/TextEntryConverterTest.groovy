@@ -45,9 +45,9 @@ class TextEntryConverterTest extends Specification {
         !clozeText.isShuffleOptions()
         !clozeText.isCaseSensitive()
         clozeText.getTemplate() == "<p>Identify the missing word in this famous quote from Shakespeare's Richard " +
-                "III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious summer by this sun " +
-                "of\n\t\t\t\t\t{{response}};<br/>\n\t\t\t\tAnd all the clouds that lour'd upon our house<br/> In the " +
-                "deep bosom of the ocean\n\t\t\t\tburied.</p>\n\t\t</blockquote>"
+                "III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious summer by this sun" +
+                " of\n                    {{response}};<br/>\n                And all the clouds that lour'd upon" +
+                " our house<br/> In the deep bosom of the ocean\n                buried.</p>\n        </blockquote>"
 
         def validation = clozeText.getValidation()
         validation.getScoringType() == Validation.ScoringType.EXACT_MATCH

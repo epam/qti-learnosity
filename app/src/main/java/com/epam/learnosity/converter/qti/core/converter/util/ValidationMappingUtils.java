@@ -28,7 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @UtilityClass
-public class ResponseUtils {
+public class ValidationMappingUtils {
     /**
      * Extracts specified identifiers from a block of text by targeting specified elements
      *
@@ -42,9 +42,9 @@ public class ResponseUtils {
         Pattern elementRegexPattern = Pattern.compile(elementPattern);
         Matcher elementMatcher = elementRegexPattern.matcher(content);
         while (elementMatcher.find()) {
-            String gapMatchElement = elementMatcher.group(0);
+            String element = elementMatcher.group(0);
             Pattern responseIdPattern = Pattern.compile(idPattern);
-            Matcher responseIdMatcher = responseIdPattern.matcher(gapMatchElement);
+            Matcher responseIdMatcher = responseIdPattern.matcher(element);
             String id = responseIdMatcher.find() ? responseIdMatcher.group(1) : null;
             responseIds.add(id);
         }

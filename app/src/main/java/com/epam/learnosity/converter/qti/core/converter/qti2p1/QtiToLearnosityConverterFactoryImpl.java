@@ -23,6 +23,7 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.choice.ChoiceConv
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.AssessmentItem;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.Interaction;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.GapMatchConverter;
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.inlinechoice.InlineChoiceConverter;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.match.MatchConverter;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.order.OrderConverter;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.textentry.TextEntryConverter;
@@ -41,6 +42,7 @@ public class QtiToLearnosityConverterFactoryImpl implements QtiToLearnosityConve
                 QtiType.MATCH, new MatchConverter(),
                 QtiType.CHOICE, new ChoiceConverter(),
                 QtiType.GAP_MATCH, new GapMatchConverter(),
+                QtiType.INLINE_CHOICE, new InlineChoiceConverter(),
                 QtiType.ORDER, new OrderConverter(),
                 QtiType.TEXT_ENTRY, new TextEntryConverter(),
                 QtiType.ASSOCIATE, new AssociateConverter()

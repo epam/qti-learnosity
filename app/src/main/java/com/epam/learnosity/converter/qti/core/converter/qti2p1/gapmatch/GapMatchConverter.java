@@ -28,7 +28,7 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.Respon
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.learnosity.ClozeAssociation;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti.GapMatchInteraction;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti.GapText;
-import com.epam.learnosity.converter.qti.core.converter.util.ResponseUtils;
+import com.epam.learnosity.converter.qti.core.converter.util.ValidationMappingUtils;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class GapMatchConverter extends QtiToLearnosityAbstractConverter<ClozeAss
         SequencedCollection<MapEntry> mapEntries = responseDeclaration.getMapping().getMapEntry();
 
         GapMatchInteraction gapMatchInteraction = (GapMatchInteraction) assessmentItem.getItemBody().getInteraction();
-        List<String> gapIds = ResponseUtils.extractElementIds(gapMatchInteraction.getTextBlock(), GAP_REGEX_PATTERN,
+        List<String> gapIds = ValidationMappingUtils.extractElementIds(gapMatchInteraction.getTextBlock(), GAP_REGEX_PATTERN,
                 RESPONSE_ID_REGEX_PATTERN);
 
         List<List<MapEntry>> gapMatchResponses = new ArrayList<>();
@@ -87,7 +87,7 @@ public class GapMatchConverter extends QtiToLearnosityAbstractConverter<ClozeAss
         }
 
         List<List<MapEntry>> cartesianProduct = Lists.cartesianProduct(gapMatchResponses);
-        List<StringValidResponse> validResponses = ResponseUtils.mapToStringResponses(cartesianProduct);
+        List<StringValidResponse> validResponses = ValidationMappingUtils.mapToStringResponses(cartesianProduct);
 
         List<StringValidResponse> sortedResponses = validResponses.stream()
                 .sorted(Comparator.comparing(stringValidResponse -> Double.parseDouble(stringValidResponse.getScore())))

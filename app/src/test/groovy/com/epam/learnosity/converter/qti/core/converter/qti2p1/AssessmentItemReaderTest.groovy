@@ -27,6 +27,7 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti.GapM
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti.GapText
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.match.qti.MatchInteraction
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.order.qti.OrderInteraction
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.upload.qti.UploadInteraction
 import spock.lang.Specification
 
 class AssessmentItemReaderTest extends Specification {
@@ -504,5 +505,45 @@ class AssessmentItemReaderTest extends Specification {
                 "identifier=\"L\">Lancaster</inlineChoice><inlineChoice identifier=\"Y\">York</inlineChoice>\n" +
                 "                </inlineChoiceInteraction>;<br/> And all the clouds that lour'd upon our house" +
                 "<br/>\n                In the deep bosom of the ocean buried.</p>\n        </blockquote>"
+    }
+
+    def readUploadTest() {
+        given:
+        def qtiXml = getClass().getResource('/qti/upload.xml').text
+        def reader = new AssessmentItemReader()
+
+        when:
+        def result = reader.read(qtiXml)
+
+        then:
+        result.getIdentifier() == "upload"
+        result.getTitle() == "Chocolate Factory"
+        !result.isAdaptive()
+        !result.isTimeDependent()
+
+        def outcomeDeclaration = result.getOutcomeDeclaration()
+        outcomeDeclaration.getIdentifier() == "SCORE"
+        outcomeDeclaration.getCardinality() == "single"
+        outcomeDeclaration.getBaseType() == "float"
+
+        def responseDeclaration = result.getResponseDeclaration().getFirst()
+        responseDeclaration.getIdentifier() == "RESPONSE"
+        responseDeclaration.getCardinality() == "single"
+        responseDeclaration.getBaseType() == "file"
+
+        def itemBody = result.getItemBody()
+        itemBody.getContent().size() == 1
+        itemBody.getContent().getFirst() == "<p>A chocolate factory produces several types of chocolate, some of" +
+                " which have nut centres.\n            The chocolates are mixed together and are randomly packed " +
+                "into cartons of ten.</p>"
+
+        UploadInteraction interaction = itemBody.getInteraction() as UploadInteraction
+        interaction.getType() == QtiType.UPLOAD
+        interaction.getFileType() == "application/pdf image/png image/jpeg"
+        interaction.getResponseIdentifier() == "RESPONSE"
+        interaction.getPrompt() == "Build a spreadsheet to simulate 50 cartons of chocolates when each carton\n" +
+                "                contains 10 chocolates, and when one-seventh of the chocolates have nut centres.\n" +
+                "                Your spreadsheet should include 50 rows representing the 50 cartons, each row\n" +
+                "                containing 10 columns to represent the chocolates."
     }
 }

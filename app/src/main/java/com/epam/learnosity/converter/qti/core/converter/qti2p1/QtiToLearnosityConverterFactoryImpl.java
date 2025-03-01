@@ -27,6 +27,7 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.inlinechoice.Inli
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.match.MatchConverter;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.order.OrderConverter;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.textentry.TextEntryConverter;
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.upload.UploadConverter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -45,7 +46,8 @@ public class QtiToLearnosityConverterFactoryImpl implements QtiToLearnosityConve
                 QtiType.INLINE_CHOICE, new InlineChoiceConverter(),
                 QtiType.ORDER, new OrderConverter(),
                 QtiType.TEXT_ENTRY, new TextEntryConverter(),
-                QtiType.ASSOCIATE, new AssociateConverter()
+                QtiType.ASSOCIATE, new AssociateConverter(),
+                QtiType.UPLOAD, new UploadConverter()
         );
     }
 

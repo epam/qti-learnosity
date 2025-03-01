@@ -25,5 +25,6 @@ public enum QtiType {
     INLINE_CHOICE,
     MATCH,
     ORDER,
-    TEXT_ENTRY
+    TEXT_ENTRY,
+    UPLOAD
 }

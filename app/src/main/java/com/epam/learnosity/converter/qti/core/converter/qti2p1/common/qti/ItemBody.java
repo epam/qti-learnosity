@@ -23,6 +23,7 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.choice.qti.Choice
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.gapmatch.qti.GapMatchInteraction;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.match.qti.MatchInteraction;
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.order.qti.OrderInteraction;
+import com.epam.learnosity.converter.qti.core.converter.qti2p1.upload.qti.UploadInteraction;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAnyElement;
@@ -45,7 +46,8 @@ public class ItemBody {
             @XmlElement(name = "gapMatchInteraction", type = GapMatchInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1"),
             @XmlElement(name = "matchInteraction", type = MatchInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1"),
             @XmlElement(name = "orderInteraction", type = OrderInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1"),
-            @XmlElement(name = "associateInteraction", type = AssociateInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")
+            @XmlElement(name = "associateInteraction", type = AssociateInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1"),
+            @XmlElement(name = "uploadInteraction", type = UploadInteraction.class, namespace = "http://www.imsglobal.org/xsd/imsqti_v2p1")
     })
     private Interaction interaction;
 

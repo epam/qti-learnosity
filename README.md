@@ -17,6 +17,7 @@ The following QTI 2.1 simple interactions are currently supported:
 - order
 - textEntry
 - associate
+- upload
 
 More types would be added in due course of time. Support for the aforementioned types is limited for now. Media types
 and UI configuration options will not be mapped.

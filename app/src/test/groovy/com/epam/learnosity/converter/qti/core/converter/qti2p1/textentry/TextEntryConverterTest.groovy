@@ -44,10 +44,11 @@ class TextEntryConverterTest extends Specification {
         !clozeText.isInstantFeedback()
         !clozeText.isShuffleOptions()
         !clozeText.isCaseSensitive()
-        clozeText.getTemplate() == "<p>Identify the missing word in this famous quote from Shakespeare's Richard " +
-                "III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious summer by this sun" +
-                " of\n                    {{response}};<br/>\n                And all the clouds that lour'd upon" +
-                " our house<br/> In the deep bosom of the ocean\n                buried.</p>\n        </blockquote>"
+        clozeText.getTemplate().replace("\r\n", "\n") == "<p>Identify the missing word in this famous quote from" +
+                " Shakespeare's Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> Made " +
+                "glorious summer by this sun of\n                    {{response}};<br/>\n                And all the" +
+                " clouds that lour'd upon our house<br/> In the deep bosom of the ocean\n                buried." +
+                "</p>\n        </blockquote>"
 
         def validation = clozeText.getValidation()
         validation.getScoringType() == Validation.ScoringType.EXACT_MATCH
@@ -84,7 +85,7 @@ class TextEntryConverterTest extends Specification {
         !clozeText.isInstantFeedback()
         !clozeText.isShuffleOptions()
         clozeText.isCaseSensitive()
-        clozeText.getTemplate() == "<div xmlns=\"http://www.imsglobal.org/xsd/imsqti_v2p1\" " +
+        clozeText.getTemplate().replace("\r\n", "\n") == "<div xmlns=\"http://www.imsglobal.org/xsd/imsqti_v2p1\" " +
                 "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">Level 1 CH1 Géoculture\n" +
                 "            <br/><strong>A</strong>Match each letter in the map of the Paris region with the name " +
                 "of the place it represents.\n" +

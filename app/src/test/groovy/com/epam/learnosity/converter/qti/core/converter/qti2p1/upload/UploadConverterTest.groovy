@@ -35,11 +35,12 @@ class UploadConverterTest extends Specification {
         then:
         fileUpload.getType() == "fileupload"
         fileUpload.getMetadata() == null
-        fileUpload.getStimulus() == "<p>A chocolate factory produces several types of chocolate, some of which have nut centres.\n" +
-                "            The chocolates are mixed together and are randomly packed into cartons of ten.</p><p>Build a spreadsheet to simulate 50 cartons of chocolates when each carton\n" +
-                "                contains 10 chocolates, and when one-seventh of the chocolates have nut centres.\n" +
-                "                Your spreadsheet should include 50 rows representing the 50 cartons, each row\n" +
-                "                containing 10 columns to represent the chocolates.</p>"
+        fileUpload.getStimulus().replace("\r\n", "\n") == "<p>A chocolate factory produces several types of" +
+                " chocolate, some of which have nut centres.\n            The chocolates are mixed together and are" +
+                " randomly packed into cartons of ten.</p><p>Build a spreadsheet to simulate 50 cartons of chocolates" +
+                " when each carton\n                contains 10 chocolates, and when one-seventh of the chocolates" +
+                " have nut centres.\n                Your spreadsheet should include 50 rows representing the 50" +
+                " cartons, each row\n                containing 10 columns to represent the chocolates.</p>"
         fileUpload.allowPdf
         fileUpload.allowJpg
         fileUpload.allowPng

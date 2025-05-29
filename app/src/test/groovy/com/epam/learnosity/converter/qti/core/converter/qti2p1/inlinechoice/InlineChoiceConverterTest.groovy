@@ -43,10 +43,10 @@ class InlineChoiceConverterTest extends Specification {
         clozeDropdown.getFeedbackAttempts() == 0
         !clozeDropdown.instantFeedback
         !clozeDropdown.isShuffleOptions()
-        clozeDropdown.getTemplate() == "<p>Identify the missing word in this famous quote from Shakespeare's Richard" +
-                " III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious summer by this sun" +
-                " of\n                    {{response}};<br/> And all the clouds that lour'd upon our house<br/>\n" +
-                "                In the deep bosom of the ocean buried.</p>\n        </blockquote>"
+        clozeDropdown.getTemplate().replace("\r\n", "\n") == "<p>Identify the missing word in this famous quote from" +
+                " Shakespeare's Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious" +
+                " summer by this sun of\n                    {{response}};<br/> And all the clouds that lour'd upon" +
+                " our house<br/>\n                In the deep bosom of the ocean buried.</p>\n        </blockquote>"
 
         def possibleResponses = clozeDropdown.getPossibleResponses()
         possibleResponses.size() == 1
@@ -88,10 +88,11 @@ class InlineChoiceConverterTest extends Specification {
         clozeDropdown.getFeedbackAttempts() == 0
         !clozeDropdown.instantFeedback
         clozeDropdown.isShuffleOptions()
-        clozeDropdown.getTemplate() == "<p>Identify the missing word in this famous quote from Shakespeare's " +
-                "Richard III.</p><blockquote><p>{{response}} is the winter of our discontent<br/> Made glorious" +
-                " summer by this sun of\n                    {{response}};<br/> And all the clouds that lour'd upon" +
-                " our house<br/>\n                In the deep bosom of the ocean buried.</p>\n        </blockquote>"
+        clozeDropdown.getTemplate().replace("\r\n", "\n") == "<p>Identify the missing word in this famous quote from" +
+                " Shakespeare's Richard III.</p><blockquote><p>{{response}} is the winter of our discontent<br/> " +
+                "Made glorious summer by this sun of\n                    {{response}};<br/> And all the clouds that" +
+                " lour'd upon our house<br/>\n                In the deep bosom of the ocean buried.</p>\n        " +
+                "</blockquote>"
 
         def possibleResponses = clozeDropdown.getPossibleResponses()
         possibleResponses.size() == 2

@@ -221,11 +221,12 @@ class AssessmentItemReaderTest extends Specification {
         validResponses[1].getMappedValue() == "0.5"
 
         def itemBody = result.getItemBody()
-        itemBody.getContentAsSingleString() == "<p>Identify the missing word in this famous quote from Shakespeare's" +
-                " Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious summer by " +
-                "this sun of\n                    <textEntryInteraction responseIdentifier=\"RESPONSE\" " +
-                "expectedLength=\"15\"/>;<br/>\n                And all the clouds that lour'd upon our house<br/>" +
-                " In the deep bosom of the ocean\n                buried.</p>\n        </blockquote>"
+        itemBody.getContentAsSingleString().replace("\r\n", "\n") == "<p>Identify the missing word in this famous " +
+                "quote from Shakespeare's Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> " +
+                "Made glorious summer by this sun of\n                    <textEntryInteraction " +
+                "responseIdentifier=\"RESPONSE\" expectedLength=\"15\"/>;<br/>\n                And all the clouds" +
+                " that lour'd upon our house<br/> In the deep bosom of the ocean\n                buried.</p>\n   " +
+                "     </blockquote>"
     }
 
     def readMultipleTextEntryTest() {
@@ -275,16 +276,13 @@ class AssessmentItemReaderTest extends Specification {
         responseDeclarations[1].getMapping().getMapEntry()[1].getMappedValue() == "4"
 
         def itemBody = result.getItemBody()
-        itemBody.getContentAsSingleString() == "<div xmlns=\"http://www.imsglobal.org/xsd/imsqti_v2p1\" " +
-                "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">Level 1 CH1 Géoculture\n" +
+        itemBody.getContentAsSingleString().replace("\r\n", "\n") == "<div xmlns=\"http://www.imsglobal.org/xsd/" +
+                "imsqti_v2p1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">Level 1 CH1 Géoculture\n" +
                 "            <br/><strong>A</strong>Match each letter in the map of the Paris region with the name " +
-                "of the place it represents.\n" +
-                "            (10 points)\n" +
-                "            <br/><img src=\"L1_CH01101.gif\" alt=\"\"/><br/>\n" +
-                "            le jardin de Giverny\n" +
-                "            <br/><textEntryInteraction responseIdentifier=\"RESPONSE_1\" expectedLength=\"6\"/>\n" +
-                "        </div><p><textEntryInteraction responseIdentifier=\"RESPONSE_2\" expectedLength=\"6\"/>\n" +
-                "        </p>"
+                "of the place it represents.\n            (10 points)\n            <br/><img src=\"L1_CH01101.gif\"" +
+                " alt=\"\"/><br/>\n            le jardin de Giverny\n            <br/><textEntryInteraction " +
+                "responseIdentifier=\"RESPONSE_1\" expectedLength=\"6\"/>\n        </div><p><textEntryInteraction" +
+                " responseIdentifier=\"RESPONSE_2\" expectedLength=\"6\"/>\n        </p>"
     }
 
     def readSimpleAssociationTest() {
@@ -450,10 +448,10 @@ class AssessmentItemReaderTest extends Specification {
         interaction.getType() == QtiType.GAP_MATCH
         interaction.getResponseIdentifier() == "RESPONSE"
         interaction.getPrompt() == "Identify the missing words in this famous quote from Shakespeare's Richard III."
-        interaction.getTextBlock() == "<blockquote><p>Now is the <gap identifier=\"G1\"/> of our discontent<br/> " +
-                "Made glorious <gap identifier=\"G2\"/> by this sun of York;<br/> And all the clouds that lour'd\n" +
-                "                    upon our house<br/> In the deep bosom of the ocean buried.</p>\n            " +
-                "</blockquote>"
+        interaction.getTextBlock().replace("\r\n", "\n") == "<blockquote><p>Now is the <gap identifier=\"G1\"/> of " +
+                "our discontent<br/> Made glorious <gap identifier=\"G2\"/> by this sun of York;<br/> And all the" +
+                " clouds that lour'd\n                    upon our house<br/> In the deep bosom of the ocean " +
+                "buried.</p>\n            </blockquote>"
         !interaction.isShuffle()
 
         def choices = interaction.getGapText()
@@ -498,13 +496,14 @@ class AssessmentItemReaderTest extends Specification {
         validResponses[0] == "Y"
 
         def itemBody = result.getItemBody()
-        itemBody.getContentAsSingleString() == "<p>Identify the missing word in this famous quote from Shakespeare's" +
-                " Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious summer by" +
-                " this sun of\n                    <inlineChoiceInteraction responseIdentifier=\"RESPONSE\" " +
-                "shuffle=\"false\"><inlineChoice identifier=\"G\">Gloucester</inlineChoice><inlineChoice " +
-                "identifier=\"L\">Lancaster</inlineChoice><inlineChoice identifier=\"Y\">York</inlineChoice>\n" +
-                "                </inlineChoiceInteraction>;<br/> And all the clouds that lour'd upon our house" +
-                "<br/>\n                In the deep bosom of the ocean buried.</p>\n        </blockquote>"
+        itemBody.getContentAsSingleString().replace("\r\n", "\n") == "<p>Identify the missing word in this famous" +
+                " quote from Shakespeare's Richard III.</p><blockquote><p>Now is the winter of our discontent<br/>" +
+                " Made glorious summer by this sun of\n                    <inlineChoiceInteraction " +
+                "responseIdentifier=\"RESPONSE\" shuffle=\"false\"><inlineChoice identifier=\"G\">Gloucester" +
+                "</inlineChoice><inlineChoice identifier=\"L\">Lancaster</inlineChoice><inlineChoice " +
+                "identifier=\"Y\">York</inlineChoice>\n                </inlineChoiceInteraction>;<br/> And all the" +
+                " clouds that lour'd upon our house<br/>\n                In the deep bosom of the ocean buried.</p>" +
+                "\n        </blockquote>"
     }
 
     def readUploadTest() {
@@ -533,9 +532,9 @@ class AssessmentItemReaderTest extends Specification {
 
         def itemBody = result.getItemBody()
         itemBody.getContent().size() == 1
-        itemBody.getContent().getFirst() == "<p>A chocolate factory produces several types of chocolate, some of" +
-                " which have nut centres.\n            The chocolates are mixed together and are randomly packed " +
-                "into cartons of ten.</p>"
+        itemBody.getContentAsSingleString().replace("\r\n", "\n") == "<p>A chocolate factory produces several types" +
+                " of chocolate, some of which have nut centres.\n            The chocolates are mixed together and" +
+                " are randomly packed into cartons of ten.</p>"
 
         UploadInteraction interaction = itemBody.getInteraction() as UploadInteraction
         interaction.getType() == QtiType.UPLOAD

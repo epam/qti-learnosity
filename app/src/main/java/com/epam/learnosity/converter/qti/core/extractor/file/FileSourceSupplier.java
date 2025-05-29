@@ -45,7 +45,7 @@ public class FileSourceSupplier implements SourceSupplier {
             List<Path> list = stream.filter(file -> file.toString().endsWith(".xml")).toList();
             return list.stream().map(file -> {
                     try {
-                        String content = new String(Files.readAllBytes(file));
+                        String content = Files.readString(file);
                         return new Resource(file.getFileName().toString(), content);
                     } catch (IOException e) {
                         throw new UncheckedIOException(e);

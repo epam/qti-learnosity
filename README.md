@@ -80,6 +80,11 @@ java -jar qti-learnosity-converter-fat.jar [sourceDir] [outputDir]
 
 Replace [sourceDir] and [outputDir] with appropriate directories.
 
+## Additional documentation
+
+[TextEntry Validation Mapping Approach](docs/textentry-to-closetext-mapping.md)  
+[Upload Interaction Mapping Approach](docs/upload-interaction-approach.md)
+
 ## License
 
 This project is licensed under the [MIT License](./LICENSE.md).

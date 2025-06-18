@@ -1,0 +1,36 @@
+{
+  "stimulus_list": [
+    "Antonio",
+    "Capulet",
+    "Demetrius"
+  ],
+  "possible_responses": [
+    "Lysander",
+    "Montague",
+    "Prospero"
+  ],
+  "duplicate_responses": false,
+  "type": "association",
+  "is_math": false,
+  "stimulus": "Hidden in this list of characters from famous Shakespeare plays are three pairs\n                of rivals. Can you match each character to his adversary?",
+  "feedback_attempts": 0,
+  "instant_feedback": false,
+  "validation": {
+    "allow_negative_scores": false,
+    "penalty": 0,
+    "min_score_if_attempted": 0,
+    "scoring_type": "partialMatchV2",
+    "unscored": false,
+    "valid_response": {
+      "score": "4",
+      "value": [
+        "Prospero",
+        "Montague",
+        "Lysander"
+      ]
+    },
+    "automarkable": true
+  },
+  "shuffle_options": true,
+  "case_sensitive": false
+}

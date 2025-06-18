@@ -1,0 +1,30 @@
+{
+  "multiple_responses": false,
+  "max_selection": 1,
+  "type": "mcq",
+  "is_math": false,
+  "stimulus": "\u003cp\u003eLook at the text in the picture.\u003c/p\u003e\u003cp\u003e\u003cimg src\u003d\"images/sign.png\" alt\u003d\"NEVER LEAVE LUGGAGE UNATTENDED\"/\u003e\u003c/p\u003e\u003cp\u003eWhat does it say?\u003c/p\u003e",
+  "feedback_attempts": 0,
+  "instant_feedback": false,
+  "shuffle_options": false,
+  "options": [
+    {
+      "label": "You must stay with your luggage at all times.",
+      "value": "ChoiceA"
+    },
+    {
+      "label": "Do not let someone else look after your luggage.",
+      "value": "ChoiceB"
+    },
+    {
+      "label": "Remember your luggage when you leave.",
+      "value": "ChoiceC"
+    }
+  ],
+  "ui_style": {
+    "type": "horizontal",
+    "columns": 1,
+    "orientation": "vertical"
+  },
+  "case_sensitive": false
+}

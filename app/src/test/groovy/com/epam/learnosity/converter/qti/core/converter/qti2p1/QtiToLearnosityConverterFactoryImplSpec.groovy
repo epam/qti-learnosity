@@ -31,9 +31,9 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.order.qti.OrderIn
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.textentry.TextEntryConverter
 import spock.lang.Specification
 
-class QtiToLearnosityConverterFactoryImplTest extends Specification {
+class QtiToLearnosityConverterFactoryImplSpec extends Specification {
 
-    def getChoiceConverterTest() {
+    def "should get a choice converter"() {
         given:
         def assessmentItem = new AssessmentItem()
         def itemBody = new ItemBody()
@@ -51,7 +51,7 @@ class QtiToLearnosityConverterFactoryImplTest extends Specification {
         converter instanceof ChoiceConverter
     }
 
-    def getMatchInteractionConverterTest() {
+    def "should get a gap match converter"() {
         given:
         def assessmentItem = new AssessmentItem()
         def itemBody = new ItemBody()
@@ -69,7 +69,7 @@ class QtiToLearnosityConverterFactoryImplTest extends Specification {
         converter instanceof MatchConverter
     }
 
-    def getOrderInteractionConverterTest() {
+    def "should get an order converter"() {
         given:
         def assessmentItem = new AssessmentItem()
         def itemBody = new ItemBody()
@@ -87,7 +87,7 @@ class QtiToLearnosityConverterFactoryImplTest extends Specification {
         converter instanceof OrderConverter
     }
 
-    def getTextEntryInteractionConverterTest() {
+    def "should get a text entry converter"() {
         given:
         def assessmentItem = new AssessmentItem()
         def itemBody = new ItemBody()
@@ -109,7 +109,7 @@ class QtiToLearnosityConverterFactoryImplTest extends Specification {
         converter instanceof TextEntryConverter
     }
 
-    def getAssociateInteractionConverterTest() {
+    def "should get an associate converter"() {
         given:
         def assessmentItem = new AssessmentItem()
         def itemBody = new ItemBody()

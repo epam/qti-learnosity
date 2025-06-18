@@ -1,0 +1,57 @@
+{
+  "multiple_responses": true,
+  "max_selection": 0,
+  "type": "mcq",
+  "is_math": false,
+  "stimulus": "Which of the following elements are used to form water?",
+  "feedback_attempts": 0,
+  "instant_feedback": false,
+  "validation": {
+    "allow_negative_scores": false,
+    "penalty": 0,
+    "min_score_if_attempted": 0,
+    "scoring_type": "partialMatchV2",
+    "unscored": false,
+    "valid_response": {
+      "score": "2.0",
+      "value": [
+        "H",
+        "O"
+      ]
+    },
+    "automarkable": true
+  },
+  "shuffle_options": true,
+  "options": [
+    {
+      "label": "Hydrogen",
+      "value": "H"
+    },
+    {
+      "label": "Helium",
+      "value": "He"
+    },
+    {
+      "label": "Carbon",
+      "value": "C"
+    },
+    {
+      "label": "Oxygen",
+      "value": "O"
+    },
+    {
+      "label": "Nitrogen",
+      "value": "N"
+    },
+    {
+      "label": "Chlorine",
+      "value": "Cl"
+    }
+  ],
+  "ui_style": {
+    "type": "horizontal",
+    "columns": 1,
+    "orientation": "vertical"
+  },
+  "case_sensitive": false
+}

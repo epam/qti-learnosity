@@ -22,8 +22,8 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.AssessmentItemRea
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.learnosity.Validation
 import spock.lang.Specification
 
-class OrderConverterTest extends Specification {
-    def convertTest() {
+class OrderConverterSpec extends Specification {
+    def "should convert a simple order interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/order.xml').text
         def reader = new AssessmentItemReader()

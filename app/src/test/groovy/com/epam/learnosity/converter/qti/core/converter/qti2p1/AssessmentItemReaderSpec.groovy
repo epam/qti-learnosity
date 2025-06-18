@@ -30,9 +30,9 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.order.qti.OrderIn
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.upload.qti.UploadInteraction
 import spock.lang.Specification
 
-class AssessmentItemReaderTest extends Specification {
+class AssessmentItemReaderSpec extends Specification {
 
-    def readMatchTest() {
+    def "should read a match interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/match.xml').text
         def reader = new AssessmentItemReader()
@@ -87,7 +87,7 @@ class AssessmentItemReaderTest extends Specification {
         simpleMatchSet.size() == 2
     }
 
-    def readChoiceTest() {
+    def "should read a choice interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/choice.xml').text
         def reader = new AssessmentItemReader()
@@ -137,7 +137,7 @@ class AssessmentItemReaderTest extends Specification {
         )
     }
 
-    def readOrderTest() {
+    def "should read an order interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/order.xml').text
         def reader = new AssessmentItemReader()
@@ -186,7 +186,7 @@ class AssessmentItemReaderTest extends Specification {
         )
     }
 
-    def readSingleTextEntryTest() {
+    def "should read a single text entry interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/text_entry.xml').text
         def reader = new AssessmentItemReader()
@@ -221,7 +221,7 @@ class AssessmentItemReaderTest extends Specification {
         validResponses[1].getMappedValue() == "0.5"
 
         def itemBody = result.getItemBody()
-        itemBody.getContentAsSingleString().replace("\r\n", "\n") == "<p>Identify the missing word in this famous " +
+        itemBody.getContentAsSingleString().normalize() == "<p>Identify the missing word in this famous " +
                 "quote from Shakespeare's Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> " +
                 "Made glorious summer by this sun of\n                    <textEntryInteraction " +
                 "responseIdentifier=\"RESPONSE\" expectedLength=\"15\"/>;<br/>\n                And all the clouds" +
@@ -229,7 +229,7 @@ class AssessmentItemReaderTest extends Specification {
                 "     </blockquote>"
     }
 
-    def readMultipleTextEntryTest() {
+    def "should read a multiple text entry interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/text_entry_multiple_gaps.xml').text
         def reader = new AssessmentItemReader()
@@ -276,7 +276,7 @@ class AssessmentItemReaderTest extends Specification {
         responseDeclarations[1].getMapping().getMapEntry()[1].getMappedValue() == "4"
 
         def itemBody = result.getItemBody()
-        itemBody.getContentAsSingleString().replace("\r\n", "\n") == "<div xmlns=\"http://www.imsglobal.org/xsd/" +
+        itemBody.getContentAsSingleString().normalize() == "<div xmlns=\"http://www.imsglobal.org/xsd/" +
                 "imsqti_v2p1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">Level 1 CH1 Géoculture\n" +
                 "            <br/><strong>A</strong>Match each letter in the map of the Paris region with the name " +
                 "of the place it represents.\n            (10 points)\n            <br/><img src=\"L1_CH01101.gif\"" +
@@ -285,7 +285,7 @@ class AssessmentItemReaderTest extends Specification {
                 " responseIdentifier=\"RESPONSE_2\" expectedLength=\"6\"/>\n        </p>"
     }
 
-    def readSimpleAssociationTest() {
+    def "should read a simple association interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/associate.xml').text
         def reader = new AssessmentItemReader()
@@ -343,7 +343,7 @@ class AssessmentItemReaderTest extends Specification {
         )
     }
 
-    def readExtendedAssociationTest() {
+    def "should read an extended association interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/associate_extended.xml').text
         def reader = new AssessmentItemReader()
@@ -406,7 +406,7 @@ class AssessmentItemReaderTest extends Specification {
         )
     }
 
-    def readGapMatchTest() {
+    def "should read a gap match interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/gap_match.xml').text
         def reader = new AssessmentItemReader()
@@ -448,7 +448,7 @@ class AssessmentItemReaderTest extends Specification {
         interaction.getType() == QtiType.GAP_MATCH
         interaction.getResponseIdentifier() == "RESPONSE"
         interaction.getPrompt() == "Identify the missing words in this famous quote from Shakespeare's Richard III."
-        interaction.getTextBlock().replace("\r\n", "\n") == "<blockquote><p>Now is the <gap identifier=\"G1\"/> of " +
+        interaction.getTextBlock().normalize() == "<blockquote><p>Now is the <gap identifier=\"G1\"/> of " +
                 "our discontent<br/> Made glorious <gap identifier=\"G2\"/> by this sun of York;<br/> And all the" +
                 " clouds that lour'd\n                    upon our house<br/> In the deep bosom of the ocean " +
                 "buried.</p>\n            </blockquote>"
@@ -464,7 +464,7 @@ class AssessmentItemReaderTest extends Specification {
         )
     }
 
-    def readInlineChoiceTest() {
+    def "should read an inline choice interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/inline_choice.xml').text
         def reader = new AssessmentItemReader()
@@ -496,7 +496,7 @@ class AssessmentItemReaderTest extends Specification {
         validResponses[0] == "Y"
 
         def itemBody = result.getItemBody()
-        itemBody.getContentAsSingleString().replace("\r\n", "\n") == "<p>Identify the missing word in this famous" +
+        itemBody.getContentAsSingleString().normalize() == "<p>Identify the missing word in this famous" +
                 " quote from Shakespeare's Richard III.</p><blockquote><p>Now is the winter of our discontent<br/>" +
                 " Made glorious summer by this sun of\n                    <inlineChoiceInteraction " +
                 "responseIdentifier=\"RESPONSE\" shuffle=\"false\"><inlineChoice identifier=\"G\">Gloucester" +
@@ -506,7 +506,7 @@ class AssessmentItemReaderTest extends Specification {
                 "\n        </blockquote>"
     }
 
-    def readUploadTest() {
+    def "should read an upload interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/upload.xml').text
         def reader = new AssessmentItemReader()
@@ -532,7 +532,7 @@ class AssessmentItemReaderTest extends Specification {
 
         def itemBody = result.getItemBody()
         itemBody.getContent().size() == 1
-        itemBody.getContentAsSingleString().replace("\r\n", "\n") == "<p>A chocolate factory produces several types" +
+        itemBody.getContentAsSingleString().normalize() == "<p>A chocolate factory produces several types" +
                 " of chocolate, some of which have nut centres.\n            The chocolates are mixed together and" +
                 " are randomly packed into cartons of ten.</p>"
 

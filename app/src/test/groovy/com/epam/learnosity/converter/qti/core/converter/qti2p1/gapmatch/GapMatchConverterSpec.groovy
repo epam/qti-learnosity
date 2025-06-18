@@ -22,8 +22,8 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.AssessmentItemRea
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.learnosity.Validation
 import spock.lang.Specification
 
-class GapMatchConverterTest extends Specification {
-    def convertSimpleGapMatchInteraction() {
+class GapMatchConverterSpec extends Specification {
+    def "should convert a simple gap match interaction"() {
         given:
         def qtiXml = getClass().getResource("/qti/gap_match.xml").text
         def reader = new AssessmentItemReader()
@@ -45,7 +45,7 @@ class GapMatchConverterTest extends Specification {
         !clozeAssociation.isInstantFeedback()
         !clozeAssociation.isShuffleOptions()
         !clozeAssociation.isDuplicateResponses()
-        clozeAssociation.getTemplate().replace("\r\n", "\n") == "<blockquote><p>Now is the {{response}} of our " +
+        clozeAssociation.getTemplate().normalize() == "<blockquote><p>Now is the {{response}} of our " +
                 "discontent<br/> Made glorious {{response}} by this sun of York;<br/> And all the clouds that" +
                 " lour'd\n                    upon our house<br/> In the deep bosom of the ocean buried.</p>\n " +
                 "           </blockquote>"
@@ -66,7 +66,7 @@ class GapMatchConverterTest extends Specification {
         validation.getAltResponses().isEmpty()
     }
 
-    def convertGapMatchInteractionWithMultipleResponses() {
+    def "should convert a gap match interaction with multiple responses"() {
         given:
         def qtiXml = getClass().getResource("/qti/gap_match_multiple_responses.xml").text
         def reader = new AssessmentItemReader()
@@ -88,7 +88,7 @@ class GapMatchConverterTest extends Specification {
         !clozeAssociation.isInstantFeedback()
         !clozeAssociation.isShuffleOptions()
         clozeAssociation.isDuplicateResponses()
-        clozeAssociation.getTemplate().replace("\r\n", "\n") == "<blockquote><p>Now is the {{response}} of our" +
+        clozeAssociation.getTemplate().normalize() == "<blockquote><p>Now is the {{response}} of our" +
                 " discontent<br/> Made glorious {{response}} by this sun of York;<br/> And all the clouds that" +
                 " lour'd\n                    upon our house<br/> In the deep bosom of the ocean buried.</p>\n" +
                 "            </blockquote>"

@@ -24,9 +24,9 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.choice.learnosity
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.learnosity.Validation
 import spock.lang.Specification
 
-class ChoiceConverterTest extends Specification {
+class ChoiceConverterSpec extends Specification {
 
-    def convertSimpleChoiceTest() {
+    def "should convert a simple choice interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/choice.xml').text
         def reader = new AssessmentItemReader()
@@ -59,7 +59,7 @@ class ChoiceConverterTest extends Specification {
         uiStyle.getFontSize() == null
     }
 
-    def convertMultipleResponseChoiceTest() {
+    def "should convert a multiple response choice interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/choice_multiple.xml').text
         def reader = new AssessmentItemReader()

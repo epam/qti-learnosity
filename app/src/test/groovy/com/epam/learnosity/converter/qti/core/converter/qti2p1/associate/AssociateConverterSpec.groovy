@@ -22,8 +22,8 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.AssessmentItemRea
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.learnosity.Validation
 import spock.lang.Specification
 
-class AssociateConverterTest extends Specification {
-    def convertSimpleAssociationTest() {
+class AssociateConverterSpec extends Specification {
+    def "should convert a simple associate interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/associate.xml').text
         def reader = new AssessmentItemReader()
@@ -70,7 +70,7 @@ class AssociateConverterTest extends Specification {
         values[2] == "Lysander"
     }
 
-    def convertExtendedAssociationTest() {
+    def "should convert an extended associate interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/associate_extended.xml').text
         def reader = new AssessmentItemReader()

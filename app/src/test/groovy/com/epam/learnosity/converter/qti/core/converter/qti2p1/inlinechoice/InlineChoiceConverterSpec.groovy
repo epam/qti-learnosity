@@ -23,8 +23,8 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.AssessmentItemRea
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.learnosity.Validation
 import spock.lang.Specification
 
-class InlineChoiceConverterTest extends Specification {
-    def convertSingleInlineChoiceTest() {
+class InlineChoiceConverterSpec extends Specification {
+    def "should convert a single inline choice interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/inline_choice.xml').text
         def reader = new AssessmentItemReader()
@@ -43,7 +43,7 @@ class InlineChoiceConverterTest extends Specification {
         clozeDropdown.getFeedbackAttempts() == 0
         !clozeDropdown.instantFeedback
         !clozeDropdown.isShuffleOptions()
-        clozeDropdown.getTemplate().replace("\r\n", "\n") == "<p>Identify the missing word in this famous quote from" +
+        clozeDropdown.getTemplate().normalize() == "<p>Identify the missing word in this famous quote from" +
                 " Shakespeare's Richard III.</p><blockquote><p>Now is the winter of our discontent<br/> Made glorious" +
                 " summer by this sun of\n                    {{response}};<br/> And all the clouds that lour'd upon" +
                 " our house<br/>\n                In the deep bosom of the ocean buried.</p>\n        </blockquote>"
@@ -69,7 +69,7 @@ class InlineChoiceConverterTest extends Specification {
         validResponseValues[0] == "York"
     }
 
-    def convertMultipleInlineChoiceTest() {
+    def "should convert a multiple inline choice interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/inline_choice_multiple_choices.xml').text
         def reader = new AssessmentItemReader()
@@ -88,7 +88,7 @@ class InlineChoiceConverterTest extends Specification {
         clozeDropdown.getFeedbackAttempts() == 0
         !clozeDropdown.instantFeedback
         clozeDropdown.isShuffleOptions()
-        clozeDropdown.getTemplate().replace("\r\n", "\n") == "<p>Identify the missing word in this famous quote from" +
+        clozeDropdown.getTemplate().normalize() == "<p>Identify the missing word in this famous quote from" +
                 " Shakespeare's Richard III.</p><blockquote><p>{{response}} is the winter of our discontent<br/> " +
                 "Made glorious summer by this sun of\n                    {{response}};<br/> And all the clouds that" +
                 " lour'd upon our house<br/>\n                In the deep bosom of the ocean buried.</p>\n        " +
@@ -122,7 +122,7 @@ class InlineChoiceConverterTest extends Specification {
         validResponseValues[1] == "York"
     }
 
-    def convertInlineChoiceWithUnsupportedResponseProcessingTest() {
+    def "should throw an exception when trying to convert an unsupported response in inline choice"() {
         given:
         def qtiXml = getClass().getResource('/qti/inline_choice_custom_processing.xml').text
         def reader = new AssessmentItemReader()

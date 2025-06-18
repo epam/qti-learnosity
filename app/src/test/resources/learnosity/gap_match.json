@@ -1,0 +1,33 @@
+{
+  "template": "\u003cblockquote\u003e\u003cp\u003eNow is the {{response}} of our discontent\u003cbr/\u003e Made glorious {{response}} by this sun of York;\u003cbr/\u003e And all the clouds that lour\u0027d\n                    upon our house\u003cbr/\u003e In the deep bosom of the ocean buried.\u003c/p\u003e\n            \u003c/blockquote\u003e",
+  "possible_responses": [
+    "winter",
+    "spring",
+    "summer",
+    "autumn"
+  ],
+  "duplicate_responses": false,
+  "type": "clozeassociation",
+  "is_math": false,
+  "stimulus": "Identify the missing words in this famous quote from Shakespeare\u0027s Richard III.",
+  "feedback_attempts": 0,
+  "instant_feedback": false,
+  "validation": {
+    "allow_negative_scores": false,
+    "penalty": 0,
+    "min_score_if_attempted": 0,
+    "scoring_type": "partialMatchV2",
+    "unscored": false,
+    "valid_response": {
+      "score": "3.0",
+      "value": [
+        "winter",
+        "summer"
+      ]
+    },
+    "automarkable": true,
+    "alt_responses": []
+  },
+  "shuffle_options": false,
+  "case_sensitive": false
+}

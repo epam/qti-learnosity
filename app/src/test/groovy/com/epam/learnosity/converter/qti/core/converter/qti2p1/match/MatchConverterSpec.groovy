@@ -22,8 +22,8 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.AssessmentItemRea
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.learnosity.Validation
 import spock.lang.Specification
 
-class MatchConverterTest extends Specification {
-    def convertToLearnosityTest() {
+class MatchConverterSpec extends Specification {
+    def "should convert a simple match interaction"() {
         given:
         def qtiXml = getClass().getResource('/qti/match.xml').text
         def reader = new AssessmentItemReader()

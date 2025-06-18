@@ -24,7 +24,6 @@ import com.epam.learnosity.converter.qti.core.converter.qti2p1.QtiToLearnosityCo
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.common.qti.AssessmentItem;
 import com.google.gson.GsonBuilder;
 import jakarta.xml.bind.JAXBException;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -33,7 +32,6 @@ public class ConverterImpl implements Converter {
     private final QtiToLearnosityConverterFactory converterFactory;
     private final AssessmentItemReader assessmentItemReader;
 
-    @SneakyThrows
     public ConverterImpl() {
         converterFactory = new QtiToLearnosityConverterFactoryImpl();
         assessmentItemReader = new AssessmentItemReader();

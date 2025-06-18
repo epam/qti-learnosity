@@ -1,0 +1,43 @@
+{
+  "multiple_responses": true,
+  "stems": [
+    "Capulet",
+    "Demetrius",
+    "Lysander",
+    "Prospero"
+  ],
+  "type": "choicematrix",
+  "is_math": false,
+  "stimulus": "Match the following characters to the Shakespeare play they appeared in:",
+  "feedback_attempts": 0,
+  "instant_feedback": false,
+  "validation": {
+    "allow_negative_scores": false,
+    "penalty": 0,
+    "min_score_if_attempted": 0,
+    "scoring_type": "exactMatch",
+    "unscored": false,
+    "valid_response": {
+      "score": "1",
+      "value": [
+        1,
+        0,
+        0,
+        2
+      ]
+    },
+    "automarkable": true
+  },
+  "shuffle_options": true,
+  "options": [
+    "A Midsummer-Night\u0027s Dream",
+    "Romeo and Juliet",
+    "The Tempest"
+  ],
+  "ui_style": {
+    "type": "table",
+    "stem_title": "Characters and Plays",
+    "horizontal_lines": false
+  },
+  "case_sensitive": false
+}

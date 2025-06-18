@@ -21,8 +21,8 @@ package com.epam.learnosity.converter.qti.core.converter.qti2p1.upload
 import com.epam.learnosity.converter.qti.core.converter.qti2p1.AssessmentItemReader
 import spock.lang.Specification
 
-class UploadConverterTest extends Specification {
-    def convertUploadTest() {
+class UploadConverterSpec extends Specification {
+    def "should convert an upload interaction"() {
         given:
         def qtiXml = getClass().getResource("/qti/upload.xml").text
         def reader = new AssessmentItemReader()
@@ -35,7 +35,7 @@ class UploadConverterTest extends Specification {
         then:
         fileUpload.getType() == "fileupload"
         fileUpload.getMetadata() == null
-        fileUpload.getStimulus().replace("\r\n", "\n") == "<p>A chocolate factory produces several types of" +
+        fileUpload.getStimulus().normalize() == "<p>A chocolate factory produces several types of" +
                 " chocolate, some of which have nut centres.\n            The chocolates are mixed together and are" +
                 " randomly packed into cartons of ten.</p><p>Build a spreadsheet to simulate 50 cartons of chocolates" +
                 " when each carton\n                contains 10 chocolates, and when one-seventh of the chocolates" +

@@ -1,0 +1,37 @@
+{
+  "stimulus_list": [
+    "Consistency",
+    "Availability",
+    "Partition Tolerance"
+  ],
+  "possible_responses": [
+    "Ensures all nodes see the same data at the same time",
+    "Ensures that every request receives a response, even in case of partial failure",
+    "Ensures the system continues to operate despite network partitions",
+    "Ability to handle increased load by adding resources"
+  ],
+  "duplicate_responses": true,
+  "type": "association",
+  "is_math": false,
+  "stimulus": "Match the key concepts of the CAP theorem with their definitions. Note that one definition is unmatched, and one concept can be used multiple times.",
+  "feedback_attempts": 0,
+  "instant_feedback": false,
+  "validation": {
+    "allow_negative_scores": false,
+    "penalty": 0,
+    "min_score_if_attempted": 0,
+    "scoring_type": "partialMatchV2",
+    "unscored": false,
+    "valid_response": {
+      "score": "3",
+      "value": [
+        "Ensures all nodes see the same data at the same time",
+        "Ensures that every request receives a response, even in case of partial failure",
+        "Ensures the system continues to operate despite network partitions"
+      ]
+    },
+    "automarkable": true
+  },
+  "shuffle_options": true,
+  "case_sensitive": false
+}
